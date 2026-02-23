@@ -4,7 +4,7 @@ import { useArticles } from '../context/ArticlesContext';
 
 function AdminPage() {
   const { isAdmin } = useAuth();
-  const { allUserArticles } = useArticles();
+  const { getAllUserArticles } = useArticles();
 
   if (!isAdmin()) {
     return <Navigate to="/" replace />;
@@ -29,13 +29,13 @@ function AdminPage() {
         </p>
       </div>
 
-      {Object.keys(allUserArticles).length === 0 ? (
+      {Object.keys(allArticles).length === 0 ? (
         <div className="message">
           No users have saved any articles yet.
         </div>
       ) : (
         <div>
-          {Object.entries(allUserArticles).map(([username, articles]) => (
+          {Object.entries(allArticles).map(([username, articles]) => (
             <div key={username} style={{ marginBottom: '32px' }}>
               <h3 style={{ 
                 color: '#333', 
